@@ -32,7 +32,7 @@ namespace GradeBook.GradeBooks
                     return 'C';
                
                 case var g when g >= grades[(index * 4) - 1]:
-                    return 'C';
+                    return 'D';
 
                 default:
                     return 'F';
