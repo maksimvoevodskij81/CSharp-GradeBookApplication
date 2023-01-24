@@ -18,21 +18,20 @@ namespace GradeBook.GradeBooks
             if (Students.Count < 5)
                 throw new InvalidOperationException("Ranked-grading requires a minimum of 5 students to work");
 
-            var rankList = Students.OrderBy(student => student.AverageGrade).Select(student => student.AverageGrade).ToList();
-            rankList.Reverse();
-            int index = Students.Count / 5; 
+            var grades = Students.OrderByDescending(student => student.AverageGrade).Select(student => student.AverageGrade).ToList();
+            int index = (int) Math.Ceiling(Students.Count * 0.2); 
             switch (averageGrade)
             {
-                case var d when d > rankList[index]:
+                case var d when d >=  grades[index-1]:
                     return 'A';
 
-                case var d when d > rankList[index += index]:
+                case var d when d >= grades[(index * 2) -1]:
                     return 'B';
 
-                case var d when d > rankList[index += index]:
+                case var d when d >= grades[(index * 3) - 1]:
                     return 'C';
                
-                case var d when d > rankList[index += index]:
+                case var d when d >= grades[(index * 4) - 1]:
                     return 'C';
 
                 default:
