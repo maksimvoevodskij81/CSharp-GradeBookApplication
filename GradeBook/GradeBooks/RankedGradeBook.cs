@@ -22,16 +22,16 @@ namespace GradeBook.GradeBooks
             int index = (int) Math.Ceiling(Students.Count * 0.2); 
             switch (averageGrade)
             {
-                case var d when d >=  grades[index-1]:
+                case var g when g >=  grades[index-1]:
                     return 'A';
 
-                case var d when d >= grades[(index * 2) -1]:
+                case var g when g >= grades[(index * 2) -1]:
                     return 'B';
 
-                case var d when d >= grades[(index * 3) - 1]:
+                case var g when g >= grades[(index * 3) - 1]:
                     return 'C';
                
-                case var d when d >= grades[(index * 4) - 1]:
+                case var g when g >= grades[(index * 4) - 1]:
                     return 'C';
 
                 default:
