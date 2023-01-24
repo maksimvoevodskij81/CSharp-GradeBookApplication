@@ -113,7 +113,7 @@ namespace GradeBook.UserInterfaces
             }
 
             var student = new Student(name, studentType, enrollmentType);
-            GradeBook.AddStudent(student);
+            GradeBook.AddStudent(student,Convert.ToBoolean(parts[3]));
             Console.WriteLine("Added {0} to the gradebook.", name);
         }
         

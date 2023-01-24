@@ -19,12 +19,13 @@ namespace GradeBook.GradeBooks
             Name = name;
             Students = new List<Student>();
         }
-
-        public void AddStudent(Student student)
+        public bool IsWeighted { get; set; }
+        public void AddStudent(Student student, bool isWeighted)
         {
             if (string.IsNullOrEmpty(student.Name))
                 throw new ArgumentException("A Name is required to add a student to a gradebook.");
             Students.Add(student);
+            IsWeighted = isWeighted;
         }
 
         public void RemoveStudent(string name)
@@ -106,18 +107,20 @@ namespace GradeBook.GradeBooks
 
         public virtual double GetGPA(char letterGrade, StudentType studentType)
         {
+            var addOne = IsWeighted && 
+                (studentType == StudentType.Honors || studentType == StudentType.DualEnrolled) ? 1 : 0;
             switch (letterGrade)
             {
                 case 'A':
-                    return 4;
+                    return 4 + addOne;
                 case 'B':
-                    return 3;
+                    return 3 + addOne;
                 case 'C':
-                    return 2;
+                    return 2 + addOne;
                 case 'D':
-                    return 1;
+                    return 1 + addOne;
                 case 'F':
-                    return 0;
+                    return 0 + addOne;
             }
             return 0;
         }
